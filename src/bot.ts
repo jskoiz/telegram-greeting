@@ -2,7 +2,7 @@ import { Telegraf, Context } from "telegraf";
 import dotenv from "dotenv";
 import config, { getConfig } from "./config.js";
 import { scheduleWarningMessages } from "./scheduler.js";
-import { setupSettingsHandlers } from "./settings.js";
+import { setupSettingsHandlers } from "./settings/index.js";
 
 dotenv.config();
 
