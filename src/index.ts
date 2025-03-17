@@ -1,21 +1,20 @@
 import { bot } from "./bot.js";
 import { scheduleWarningMessages, clearWarningInterval } from "./scheduler.js";
+import logger from "./logger.js";
 
-// Launch the bot
 bot.launch().then(() => {
-  console.log("Bot has been started...");
-  
-  // Schedule initial warning messages
+  logger.info("Bot has been started...");
   scheduleWarningMessages();
 });
 
-// Graceful stop
 process.once("SIGINT", () => {
   clearWarningInterval();
   bot.stop("SIGINT");
+  logger.info("Bot stopped due to SIGINT");
 });
 
 process.once("SIGTERM", () => {
   clearWarningInterval();
   bot.stop("SIGTERM");
+  logger.info("Bot stopped due to SIGTERM");
 });
